@@ -12,7 +12,6 @@ const Todos = () => {
 	return (
 		<div className={styles.container}>
 			<TodosStats atom={todosState} />
-			{/* <TodoListFilters /> */}
 			<TodoItemCreate atom={todosState} />
 
 			{todoList.map((todoItem) => (
