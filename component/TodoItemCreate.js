@@ -1,24 +1,34 @@
 import { useState } from "react";
 import { useSetRecoilState } from "recoil";
+import { todosState } from "../recoil/atoms/todosState";
 
-export const TodoItemCreate = ({ atom }) => {
+export const TodoItemCreate = ({ add }) => {
 	const [text, setText] = useState("");
 	const [priority, setPriority] = useState(0);
-	const setTodoList = useSetRecoilState(atom);
+	const setTodoList = useSetRecoilState(todosState);
 
 	const addItem = () => {
 		if (priority === 0) {
 			return alert("Please choose the priority");
 		}
-		setTodoList((oldTodoList) => [
-			...oldTodoList,
-			{
+		if (add === undefined) {
+			setTodoList((oldTodoList) => [
+				...oldTodoList,
+				{
+					id: getId(),
+					text: text,
+					isComplete: false,
+					priority: priority,
+				},
+			]);
+		} else {
+			add({
 				id: getId(),
 				text: text,
 				isComplete: false,
 				priority: priority,
-			},
-		]);
+			});
+		}
 		setText("");
 		setPriority(0);
 	};

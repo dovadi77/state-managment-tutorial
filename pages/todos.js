@@ -11,11 +11,11 @@ const Todos = () => {
 
 	return (
 		<div className={styles.container}>
-			<TodosStats atom={todosState} />
-			<TodoItemCreate atom={todosState} />
+			<TodosStats />
+			<TodoItemCreate />
 
-			{todoList.map((todoItem) => (
-				<TodoItem key={todoItem.id} item={todoItem} atom={todosState} />
+			{todoList.map((todoItem, index) => (
+				<TodoItem key={todoItem.id} item={todoItem} index={index} />
 			))}
 		</div>
 	);

@@ -1,9 +1,10 @@
 import { useRecoilValue } from "recoil";
+import { todosState } from "../recoil/atoms/todosState";
 import { todosStatSelector } from "../recoil/selectors/todosStatSelector";
 
-export const TodosStats = ({ atom }) => {
+export const TodosStats = ({ state }) => {
 	const { totalNum, totalCompletedNum, totalUncompletedNum, percentCompleted } =
-		useRecoilValue(todosStatSelector(atom));
+		state === undefined ? useRecoilValue(todosStatSelector(todosState)) : state;
 
 	const formattedPercentCompleted = Math.round(percentCompleted);
 

@@ -23,10 +23,14 @@ export default function Home() {
 				</p>
 
 				<div className={styles.grid}>
-					<a href="https://nextjs.org/docs" className={styles.card}>
-						<h2>Documentation &rarr;</h2>
-						<p>Find in-depth information about Next.js features and API.</p>
-					</a>
+					<Link href={"/todos_native"}>
+						<a className={styles.card}>
+							<h3>Todos APP with React Hook UseReducer &rarr;</h3>
+							<p>
+								A testing page for integrate next.js with React Hook UseReducer.
+							</p>
+						</a>
+					</Link>
 
 					<Link href={"/todos"}>
 						<a className={styles.card}>

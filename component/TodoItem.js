@@ -1,42 +1,67 @@
 import { useRecoilState } from "recoil";
+import { todosState } from "../recoil/atoms/todosState";
 
-export const TodoItem = ({ item, atom }) => {
-	const [todoList, setTodoList] = useRecoilState(atom);
-	const index = todoList.findIndex((listItem) => listItem === item);
+export const TodoItem = ({ item, edit, del, index }) => {
+	const [todoList, setTodoList] = useRecoilState(todosState);
 
 	const editItemText = ({ target: { value } }) => {
-		const newList = replaceItemAtIndex(todoList, index, {
-			...item,
-			text: value,
-		});
-
-		setTodoList(newList);
-	};
-
-	const toggleItemCompletion = () => {
-		const newList = replaceItemAtIndex(todoList, index, {
-			...item,
-			isComplete: !item.isComplete,
-		});
-
-		setTodoList(newList);
-	};
-
-	const changePriorityItem = ({ target: { value } }) => {
-		if (parseInt(value) !== 0) {
+		if (edit === undefined) {
 			const newList = replaceItemAtIndex(todoList, index, {
 				...item,
-				priority: parseInt(value),
+				text: value,
 			});
 
 			setTodoList(newList);
+		} else {
+			edit(index, {
+				...item,
+				text: value,
+			});
+		}
+	};
+
+	const toggleItemCompletion = () => {
+		if (edit === undefined) {
+			const newList = replaceItemAtIndex(todoList, index, {
+				...item,
+				isComplete: !item.isComplete,
+			});
+
+			setTodoList(newList);
+		} else {
+			edit(index, {
+				...item,
+				isComplete: !item.isComplete,
+			});
+		}
+	};
+
+	const changePriorityItem = ({ target: { value } }) => {
+		if (edit === undefined) {
+			if (parseInt(value) !== 0) {
+				const newList = replaceItemAtIndex(todoList, index, {
+					...item,
+					priority: parseInt(value),
+				});
+
+				setTodoList(newList);
+			}
+		} else {
+			edit(index, {
+				...item,
+				priority: parseInt(value),
+			});
 		}
 	};
 
 	const deleteItem = () => {
-		const newList = removeItemAtIndex(todoList, index);
+		if (edit === undefined) {
+			const newList = removeItemAtIndex(todoList, index);
 
-		setTodoList(newList);
+			setTodoList(newList);
+		} else {
+			del(index);
+		}
 	};
 
 	return (
