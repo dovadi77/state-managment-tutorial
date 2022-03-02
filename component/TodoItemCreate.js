@@ -64,5 +64,5 @@ export const TodoItemCreate = ({ add }) => {
 };
 
 function getId() {
-	return Math.floor(Math.random() * 100);
+	return Math.floor(Math.random() * 10000);
 }
