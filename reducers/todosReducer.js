@@ -9,7 +9,7 @@ export const initState = {
 export const reducer = (state, action) => {
 	switch (action.type) {
 		case "add":
-			return calculateTodos(state, [...state.todos, action.value]);
+			return calculateTodos(state, sortTodos([...state.todos, action.value]));
 		case "edit":
 			return calculateTodos(
 				state,

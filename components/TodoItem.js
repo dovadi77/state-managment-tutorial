@@ -3,10 +3,11 @@ import { todosState } from "../recoil/atoms/todosState";
 
 export const TodoItem = ({ item, edit, del, index }) => {
 	const [todoList, setTodoList] = useRecoilState(todosState);
+	let dataIndex = todoList.findIndex((listItem) => listItem === item);
 
 	const editItemText = ({ target: { value } }) => {
 		if (edit === undefined) {
-			const newList = replaceItemAtIndex(todoList, index, {
+			const newList = replaceItemAtIndex(todoList, dataIndex, {
 				...item,
 				text: value,
 			});
@@ -22,7 +23,7 @@ export const TodoItem = ({ item, edit, del, index }) => {
 
 	const toggleItemCompletion = () => {
 		if (edit === undefined) {
-			const newList = replaceItemAtIndex(todoList, index, {
+			const newList = replaceItemAtIndex(todoList, dataIndex, {
 				...item,
 				isComplete: !item.isComplete,
 			});
@@ -39,7 +40,7 @@ export const TodoItem = ({ item, edit, del, index }) => {
 	const changePriorityItem = ({ target: { value } }) => {
 		if (edit === undefined) {
 			if (parseInt(value) !== 0) {
-				const newList = replaceItemAtIndex(todoList, index, {
+				const newList = replaceItemAtIndex(todoList, dataIndex, {
 					...item,
 					priority: parseInt(value),
 				});
@@ -56,7 +57,7 @@ export const TodoItem = ({ item, edit, del, index }) => {
 
 	const deleteItem = () => {
 		if (edit === undefined) {
-			const newList = removeItemAtIndex(todoList, index);
+			const newList = removeItemAtIndex(todoList, dataIndex);
 
 			setTodoList(newList);
 		} else {
