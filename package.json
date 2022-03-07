@@ -1,5 +1,5 @@
 {
-  "name": "next-recoil-tutorial",
+  "name": "state-management-tutorial",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,6 +15,7 @@
     "recoil": "^0.6.1"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.17.0",
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0"
   }
