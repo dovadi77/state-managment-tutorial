@@ -1,7 +1,7 @@
 import { useRecoilValue } from "recoil";
 import { todosState } from "../recoil/atoms/todosState";
 import { TodoItemCreate } from "../components/TodoItemCreate";
-import { TodoItem } from "../components/todoItem";
+import { TodoItem } from "../components/TodoItem";
 import { TodosStats } from "../components/TodosStats";
 import { todosSelector } from "../recoil/selectors/todosSelector";
 import styles from "../styles/Home.module.css";

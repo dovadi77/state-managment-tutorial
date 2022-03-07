@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 import { TodoItemCreate } from "../components/TodoItemCreate";
-import { TodoItem } from "../components/todoItem";
+import { TodoItem } from "../components/TodoItem";
 import { TodosStats } from "../components/TodosStats";
 import styles from "../styles/Home.module.css";
 import { initState, reducer } from "../reducers/todosReducer";
